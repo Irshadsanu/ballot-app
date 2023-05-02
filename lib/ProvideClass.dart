@@ -5,58 +5,61 @@ import 'package:flutter/material.dart';
 import 'package:vote_ballot/ModeList.dart';
 
 class ProviderClass extends ChangeNotifier{
-  Color iconColor = Color(0xff5E1A19);
+  Color iconColor = const Color(0xff5E1A19);
+  Color readyColor = Colors.green;
+  int coloredIconIndex = -1;
   final List<modelist> Candidate=[
 
       modelist(
-          name:"",
-          Id:"1",
-          icon:'assets/ayshaicon.jpg'
+         "",
+          "",
+          "1",
       ),
      modelist(
-          name:"",
-          Id:"2",
-         icon:'assets/ayshaicon.jpg'
+          "",
+         "",
+         "2",
      ),
      modelist(
-          name:"ആസ്യ കെ സി",
-          Id:"3",
-         icon:'assets/ayshaicon.jpg'
+         'assets/soccerBall.png',
+         "ಆನಂದ್ ಗೌಡ",
+         "3",
       ),
      modelist(
-          name:"",
-          Id:"4",
-         icon:'assets/ayshaicon.jpg'
+          "",
+          "",
+          "4",
       ),
      modelist(
-          name:"",
-          Id:"5",
-         icon:'assets/ayshaicon.jpg'
+          "",
+          "",
+          "5",
+
       ),
      modelist(
-          name:"",
-          Id:"6",
-         icon:'assets/ayshaicon.jpg'
+          "",
+          "",
+          "6",
       ),
      modelist(
-          name:"",
-          Id:"7",
-         icon:'assets/ayshaicon.jpg'
+          "",
+          "",
+          "7",
       ),
      modelist(
-          name:"",
-          Id:"8",
-         icon:'assets/ayshaicon.jpg'
+          "",
+          "",
+          "8",
       ),
      modelist(
-          name:"",
-          Id:"9",
-         icon:'assets/ayshaicon.jpg'
+          "",
+          "",
+          "9",
       ),
      modelist(
-          name:"",
-          Id:"10",
-         icon:'assets/ayshaicon.jpg'
+          "",
+          "",
+          "10",
       ),
 
 
@@ -65,13 +68,18 @@ class ProviderClass extends ChangeNotifier{
 
 
    void changeColor() {
-     iconColor = Colors.red;
+     readyColor = Colors.red;
+     // iconColor = Colors.red;
      notifyListeners();
+   }
+   void IIndex (int index){
+     coloredIconIndex = index;
    }
 
    void resetColor() {
      iconColor = Color(0xff5E1A19);
-     notifyListeners();
+     readyColor = Colors.green;
+     // notifyListeners();
    }
 }
 

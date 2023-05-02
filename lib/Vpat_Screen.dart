@@ -19,14 +19,14 @@ class _VpatState extends State<Vpat> with SingleTickerProviderStateMixin {
   void initState() {
     super.initState();
     _controller =
-        AnimationController(vsync:this, duration: Duration(seconds: 8));
+        AnimationController(vsync:this, duration: const Duration(seconds: 8));
 
-    _animation = Tween<Offset>(begin: Offset.zero, end: Offset(0,1))
+    _animation = Tween<Offset>(begin: Offset.zero, end: const Offset(0,1))
         .animate(_controller);
 
-    Timer(Duration(seconds: 8),
+    Timer(const Duration(seconds: 8),
           ()=>Navigator.pushReplacement(context,
-            MaterialPageRoute(builder: (context)=>Homepage()),
+            MaterialPageRoute(builder: (context)=>const Homepage()),
       ),
     );
   }
@@ -48,15 +48,16 @@ class _VpatState extends State<Vpat> with SingleTickerProviderStateMixin {
 
                 position: _animation,
                child: Container(
-                 padding: EdgeInsets.only(bottom: 35,),
+                 padding: const EdgeInsets.only(bottom: 35,),
                  // width: 250,
                  //  height: 200,
                 // color: Colors.brown,
                   child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
-                      Text("ആസ്യ കെ സി",style: TextStyle(fontSize: 10),),
-                      Text("3",style: TextStyle(fontWeight: FontWeight.bold),),
-                      Image.asset("assets/ayshaicon.jpg",scale:23 ,)
+                      const Text("ಆನಂದ್ ಗೌಡ",style: TextStyle(fontSize: 12,fontWeight: FontWeight.bold),),
+                      const Text("3",style: TextStyle(fontWeight: FontWeight.bold),),
+                      Image.asset("assets/soccerBall.png",scale:23 ,)
                     ],
                   ),)
                 ),

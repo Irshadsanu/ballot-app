@@ -5,6 +5,7 @@ import 'package:vote_ballot/ProvideClass.dart';
 import 'Hompage.dart';
 
 void main() {
+
   runApp(const MyApp());
 }
 
@@ -21,10 +22,9 @@ class MyApp extends StatelessWidget {
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
         theme: ThemeData(
-
           primarySwatch: Colors.blue,
         ),
-        home: Homepage(),
+        home: const Homepage(),
       ),
     );
   }

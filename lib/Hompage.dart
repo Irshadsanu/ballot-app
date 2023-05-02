@@ -14,8 +14,10 @@ class Homepage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
-
+    ProviderClass donationProvider =
+    Provider.of<ProviderClass>(context,listen:false);
+donationProvider.resetColor();
+donationProvider.coloredIconIndex =-1;
     MediaQueryData queryData;
     queryData = MediaQuery.of(context);
     var width = queryData.size.width;
@@ -23,9 +25,9 @@ class Homepage extends StatelessWidget {
     return Scaffold(
       body: SafeArea(
           child: Container(
-            margin: EdgeInsets.all(8),
-            padding: EdgeInsets.all(4),
-            height: height,
+            margin: const EdgeInsets.all(8),
+            padding: const EdgeInsets.all(4),
+            height: 720,
             width: width,
             decoration: BoxDecoration(
               color: Colors.black12,
@@ -34,10 +36,12 @@ class Homepage extends StatelessWidget {
             ),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
+                // SizedBox(height: height/9,),
                 Padding(
                   padding: const EdgeInsets.only(
-                    top: 20,
+                    top: 40,
                     bottom: 5,
                     left: 20
                   ),
@@ -46,24 +50,28 @@ class Homepage extends StatelessWidget {
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        Row(
-                          children: const [
-                            Text("Ready"),
-                        Icon(Icons.circle ,color: Colors.green,)
-                          ],
+                        Consumer<ProviderClass>(
+                          builder: (context,value,child) {
+                            return Row(
+                              children:  [
+                                const Text("Ready"),
+                            Icon(Icons.circle ,color:value.readyColor,)
+                              ],
+                            );
+                          }
                         ),
                         Row(
                           children: [
                             const Text("Ballot Unit"),
                         Container(
                           alignment: Alignment.center,
-                          margin:  EdgeInsets.only(left: 3),
+                          margin:  const EdgeInsets.only(left: 3),
                           height: 28,
                           width: 22,
                           decoration:
                         BoxDecoration(color: Colors.black54,
                             borderRadius: BorderRadius.circular(12)),
-                          child: Text("1",style: TextStyle(color: Colors.white)),
+                          child: const Text("1",style: TextStyle(color: Colors.white)),
                         )
                           ],
                         ),
@@ -71,8 +79,9 @@ class Homepage extends StatelessWidget {
                     ),
                   ),
                 ),
+                const Spacer(),
                 SizedBox(
-                  height: height/1.2,
+                  height: 550,
                   child: Consumer<ProviderClass>(
                     builder: (context,value,child) {
                       return ListView.builder(
@@ -80,7 +89,7 @@ class Homepage extends StatelessWidget {
                           itemBuilder: (context, index) {
                           var item =value.Candidate[index];
                             return  Card(
-                              margin: EdgeInsets.all(1),
+                              margin: const EdgeInsets.all(1),
                               child: ListTile(
                                 tileColor: Colors.white,
                                 trailing: Container(
@@ -90,28 +99,36 @@ class Homepage extends StatelessWidget {
                                   child: Row(
                                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                                     children: [
-                                      Icon(Icons.circle,color:value.iconColor),
-                                      ElevatedButton(onPressed: (){
+                                      Icon(Icons.circle,
+                                          color:
+                                          value.coloredIconIndex == index?Colors.red: value.iconColor),
+                                      ElevatedButton( onPressed: (){
                                         // FlutterBeep.beep();
+                                        if(item.Id=="3"){
                                         final player=AudioPlayer();
                                         player.play(AssetSource('beep.mp3'));
+                                        value.IIndex(index);
                                         value.changeColor();
-                                        Timer(Duration(milliseconds: 1300 ), () {
-                                          Navigator.push(context, MaterialPageRoute(builder: (_) => Vpat()));
+                                        Timer(const Duration(milliseconds: 1300 ), () {
+                                          Navigator.pushReplacement(context, MaterialPageRoute(builder: (_) => const Vpat()));
                                         });
+                                        // value.resetColor();
+                                        }else{
+
+                                        }
 
                                       },
                                           style: ElevatedButton.styleFrom(
-                                            backgroundColor: Color(0xff183869),
+                                            backgroundColor: const Color(0xff183869),
                                               shape: (
                                                   RoundedRectangleBorder(
                                                       borderRadius: BorderRadius.circular(18.0),
                                                   )
                                               )
                                           )
-                                        
+
                                           ,
-                                          child: SizedBox(width: 45,))
+                                          child: const SizedBox(width: 45,))
                                     ],
                                   ),
                                 ),
@@ -119,10 +136,10 @@ class Homepage extends StatelessWidget {
                                //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                   children: [
                                     Text(item.Id.toString()),
-                                    SizedBox(width: 12),
-                                    Text(item.name.toString()),
-                                    Spacer(),
-                                    Image.asset(item.icon.toString(),scale: 33,),
+                                    const SizedBox(width: 12),
+                                    Text(item.name.toString(),style: const TextStyle(fontWeight: FontWeight.bold)),
+                                    const Spacer(),
+                                    item.icon ==""?const SizedBox():Image.asset(item.icon.toString(),scale: 15),
                                   ],
                                 ),
                                 // leading:,

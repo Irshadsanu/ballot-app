@@ -39,6 +39,26 @@
   <!-- This script adds the flutter initialization JS code -->
   <script src="flutter.js" defer></script>
 </head>
+<script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-database.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-analytics.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-storage.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app-check.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
+<script >
+const firebaseConfig = {
+  apiKey: "AIzaSyDxQqUBmmHzEY0Kx3x2943pcoRc0hXdaRE",
+  authDomain: "voteballot.firebaseapp.com",
+  projectId: "voteballot",
+  storageBucket: "voteballot.appspot.com",
+  messagingSenderId: "809866271170",
+  appId: "1:809866271170:web:42a23e5dbe770a86871e5b",
+  measurementId: "G-5NTV48E9JZ"
+};
+
+    initializeApp(firebaseConfig);
+
+</script>
 <body>
   <script>
     window.addEventListener('load', function(ev) {
